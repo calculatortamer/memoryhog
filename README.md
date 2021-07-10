@@ -13,12 +13,13 @@ i want to waste 4GB of ram
 
 either :
 ```
-$ ./memoryhog 4000000000
+$ ./memoryhog 4G
 ```
 or
 ```
 $ ./memoryhog
 how much memory can i eat ?
-4000000000
+4G
 ```
-(suffixes will be supported later this century)
+you can put any value that machine supports
+supported suffixes : k,M,G,T,P,E (1000) / ki,Mi,Gi,Ti,Pi,Ei (1024)
