@@ -33,7 +33,9 @@ int main(int argc, char *argv[]){
 	}
 	printf("writing done\n");
 	
-	printf("freeing memory\n");
+	while(1);
+	
+	printf("freeing memory");
 	free(memoryallocated);
 	return 0;
 }
@@ -44,6 +46,7 @@ unsigned long string_to_long(char* input){
 	unsigned int i=0;
 	int unit=0; /*empty=0, kilo=1, mega=2, giga=3, etc...*/
 	int multiplier=0; /*either 1000 or 1024*/
+	int decimal=0; /*0=string contains no decimal point/comma, anything else=number of digits after the point/comma*/
 	while(input[i]!='\x00'){
 		switch(input[i]){
 		case 'k':
@@ -66,11 +69,15 @@ unsigned long string_to_long(char* input){
 			break;
 		case 'i':
 			break;
+		case ',':
+		case '.':
+			decimal=1;
+			break;
 		default:
 			output*=10; /*decimalshift to the left*/
 			output+=input[i]-48; /*48 is the position of '0' in ASCII, '0' - 48 = 0 | '9' - 48 = 9*/
 		}
-		if(unit!=0){
+		if(unit){
 			if(input[i+1]=='i'){ /*checking for an 'i' to see if we use 1000 or 1024*/
 				multiplier=1024;
 			}
@@ -81,11 +88,16 @@ unsigned long string_to_long(char* input){
 			for(;j<unit;j++){
 				output*=multiplier;
 			}
-		}
-		if(unit){/*if it detected an unit, stop the loop*/
 			break;
 		}
 		i++;
+	}
+	if(!unit && decimal){ /*if user is curious enough to ask me to allocate bits*/
+		printf("note : i dont allocate bits\n");
+	}
+	unsigned int j=0;
+	for(j=0;j<decimal;j++){
+		output/=10;
 	}
 	return output;
 }
