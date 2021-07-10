@@ -33,7 +33,7 @@ int main(int argc, char *argv[]){
 	}
 	printf("writing done\n");
 	
-	printf("freeing memory");
+	printf("freeing memory\n");
 	free(memoryallocated);
 	return 0;
 }
