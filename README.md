@@ -22,4 +22,5 @@ how much memory can i eat ?
 4G
 ```
 you can put any value that machine supports
+
 supported suffixes : k,M,G,T,P,E (1000) / ki,Mi,Gi,Ti,Pi,Ei (1024)
