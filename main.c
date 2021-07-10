@@ -32,7 +32,6 @@ int main(int argc, char *argv[]){
 	}
 	printf("writing done\n");
 	
-	getchar(); //wait until user is satisfied
 	free(memoryallocated);
 	return 0;
 }
