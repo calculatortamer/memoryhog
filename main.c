@@ -50,24 +50,31 @@ unsigned long string_to_long(char* input){
 	while(input[i]!='\x00'){
 		switch(input[i]){
 		case 'k':
+		case 'K':
 			unit=1;
 			break;
 		case 'M':
+		case 'm':
 			unit=2;
 			break;
 		case 'G':
+		case 'g':
 			unit=3;
 			break;
 		case 'T':
+		case 't':
 			unit=4;
 			break;
 		case 'P':
+		case 'p':
 			unit=5;
 			break;
 		case 'E':
+		case 'e':
 			unit=6;
 			break;
 		case 'i':
+		case 'I':
 			break;
 		case ',':
 		case '.':
