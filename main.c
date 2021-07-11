@@ -105,11 +105,9 @@ unsigned long string_to_long(char* input){
 	if(!unit && decimal){ /*if user is curious enough to ask me to allocate bits*/
 		printf("note : i dont allocate bits\n");
 	}
-	printf("%d",decimal);
 	unsigned int j=1;
 	for(;j<decimal;j++){
 		output/=10;
-		printf("F");
 	}
 	return output;
 }
