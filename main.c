@@ -81,6 +81,9 @@ unsigned long string_to_long(char* input){
 			decimal=1;
 			break;
 		default:
+			if(decimal){ /*if decimal isnt zero*/
+				decimal++;
+			}
 			output*=10; /*decimalshift to the left*/
 			output+=input[i]-48; /*48 is the position of '0' in ASCII, '0' - 48 = 0 | '9' - 48 = 9*/
 		}
@@ -102,9 +105,11 @@ unsigned long string_to_long(char* input){
 	if(!unit && decimal){ /*if user is curious enough to ask me to allocate bits*/
 		printf("note : i dont allocate bits\n");
 	}
-	unsigned int j=0;
-	for(j=0;j<decimal;j++){
+	printf("%d",decimal);
+	unsigned int j=1;
+	for(;j<decimal;j++){
 		output/=10;
+		printf("F");
 	}
 	return output;
 }
