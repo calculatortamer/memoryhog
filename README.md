@@ -3,14 +3,11 @@ its a (hopefully portable) program that takes a lot of memory
 
 it keeps the memory for itself until you ~~tell him to stop (press enter) or~~ kill it
 
-## how to compile :
+## how to build :
 ```
 $ cc main.c -o memoryhog
 ```
-some flags can be added for optimisation
-```
-$ cc main.c -o memoryhog -O3 -s
-```
+some flags can be added for optimisation like -O3 and -s on gcc
 
 ## how to use :
 i want to waste 3.5GB of ram
