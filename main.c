@@ -4,7 +4,7 @@
 unsigned long string_to_long(char* input);
 
 int main(int argc, char *argv[]){
-	char* memory_to_eat=malloc(20);
+	char* memory_to_eat=malloc(40); /*you wont need more than 40 characters anyway, you hacker*/
 	if(argc<2){ /*if user didnt give argument*/
 		printf("how much memory can i eat ?\n");
 		scanf("%s",memory_to_eat);
@@ -78,14 +78,31 @@ unsigned long string_to_long(char* input){
 			break;
 		case ',':
 		case '.':
-			decimal=1;
+			if(!decimal){
+				decimal=1;
+			}
+			else{
+				printf("extra decimal character detected, ignoring...\n");
+			}
 			break;
-		default:
+		case '0':
+		case '1':
+		case '2':
+		case '3':
+		case '4':
+		case '5':
+		case '6':
+		case '7':
+		case '8':
+		case '9':
 			if(decimal){ /*if decimal isnt zero*/
 				decimal++;
 			}
 			output*=10; /*decimalshift to the left*/
 			output+=input[i]-48; /*48 is the position of '0' in ASCII, '0' - 48 = 0 | '9' - 48 = 9*/
+			break;
+		default:
+			printf("unknown character : %c\n",input[i]);
 		}
 		if(unit){
 			if(input[i+1]=='i'){ /*checking for an 'i' to see if we use 1000 or 1024*/
