@@ -7,6 +7,10 @@ it keeps the memory for itself until you ~~tell him to stop (press enter) or~~ k
 ```
 $ cc main.c -o memoryhog
 ```
+some flags can be added for optimisation
+```
+$ cc main.c -o memoryhog -O3 -s
+```
 
 ## how to use :
 i want to waste 3.5GB of ram
