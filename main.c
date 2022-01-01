@@ -1,39 +1,43 @@
+#ifdef _WIN32
+#include <Windows.h>
+#else
+#include <unistd.h>
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
+#include "arg_reader.h"
 
 unsigned long string_to_long(char* input);
 
 int main(int argc, char *argv[]){
-	char* memory_to_eat=malloc(40); /*you wont need more than 40 characters anyway, you hacker*/
-	if(argc<2){ /*if user didnt give argument*/
-		printf("how much memory can i eat ?\n");
-		scanf("%s",memory_to_eat);
-	}
-	else{
-		memory_to_eat=argv[1];
-	}
 	
-	unsigned long memorysize = string_to_long(memory_to_eat); /*converting string to long*/
+	struct arguments args = read_args(argc, argv);
+	
+	unsigned long memorysize = string_to_long(args.memorysize); /*converting string to long*/
 	printf("allocating %lu bytes of memory\n",memorysize);
 	char* memoryallocated = malloc(memorysize); /*allocating memory*/
 	
 	
 	if(memoryallocated == NULL){ /*if malloc returned null, it means you are too greedy/system has not that much RAM*/
 		printf("malloc failed !!\n");
+		exit(2);
 	}
 	else{
 		printf("malloc success\n");
 	}
 	
-	
-	printf("writing to memory\n");
-	unsigned long i=0;
-	for(;i<memorysize;i++){
-		memoryallocated[i] = (char)rand(); /*putting random characters in memory incase ram is compressed or unused*/
+	if(!args.malloc_only){
+		printf("writing to memory\n");
+		unsigned long i=0;
+		for(;i<memorysize;i++){
+			memoryallocated[i] = (char)rand(); /*putting random characters in memory incase ram is compressed or unused*/
+		}
+		printf("writing done\n");
+	}	
+	while(1){
+		sleep(1);
 	}
-	printf("writing done\n");
-	
-	while(1);
 	
 	printf("freeing memory");
 	free(memoryallocated);
